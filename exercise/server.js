@@ -23,20 +23,31 @@ var connection = mysql.createConnection({
 app.use(express.json());
 app.use('/', express.static('./assets'));
 
-// app.get('/search', function(req, res) {
-//     // console.log(req.body)
-//     connection.query('SELECT * FROM licence_plates WHERE plate=' + req.body.plate + ';', function(err, result) {
-//         if(err) {
-//             console.log(err.toString());
-//           }
-//           console.log(result)
-//           res.json(result);
-//     })
-// })
 
 app.get('/search', function(req, res) {
-    console.log(req.params);
-    connection.query('SELECT * FROM licence_plates;', function(err, result) {
+    let querySearch = req.query;
+    if (querySearch !== null) {
+        connection.query('SELECT * FROM licence_plates WHERE plate="' + querySearch.q + '";', function(err, result) {
+            if(err) {
+                console.log(err.toString());
+              }
+              res.json(result);
+        });
+    }
+    else {
+        connection.query('SELECT * FROM licence_plates;', function(err, result) {
+            if(err) {
+                console.log(err.toString());
+              }
+              res.json(result);
+        });
+    }
+});
+
+
+app.get('/search/:brand', function(req, res) {
+    let carBrand = req.params.brand;
+    connection.query('SELECT * FROM licence_plates WHERE car_brand="' + carBrand + '";', function(err, result) {
         if(err) {
             console.log(err.toString());
           }

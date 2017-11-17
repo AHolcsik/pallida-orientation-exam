@@ -2,7 +2,6 @@
 
 function ajax(method, queryUrl, callback) {
     let xhr = new XMLHttpRequest();
-    // data = data ? data : null;
     xhr.open(method, queryUrl);
     xhr.setRequestHeader('Content-Type', 'application/json');
     xhr.onreadystatechange = function() {
@@ -11,9 +10,5 @@ function ajax(method, queryUrl, callback) {
             callback(recievedData);
         };
     };
-    // let sendData = null
-    // if (data){
-    //     sendData = JSON.stringify(data)
-    // }
     xhr.send();
 };
