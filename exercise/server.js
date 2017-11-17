@@ -23,7 +23,19 @@ var connection = mysql.createConnection({
 app.use(express.json())
 app.use('/', express.static('./assets'))
 
+// app.get('/search', function(req, res) {
+//     // console.log(req.body)
+//     connection.query('SELECT * FROM licence_plates WHERE plate=' + req.body.plate + ';', function(err, result) {
+//         if(err) {
+//             console.log(err.toString());
+//           }
+//           console.log(result)
+//           res.json(result);
+//     })
+// })
+
 app.get('/search', function(req, res) {
+    console.log(req.params)
     connection.query('SELECT * FROM licence_plates;', function(err, result) {
         if(err) {
             console.log(err.toString());
@@ -31,6 +43,7 @@ app.get('/search', function(req, res) {
           res.json(result);
     })
 })
+
 
 app.get('/', function(req, res) {
     res.sendFile(__dirname + '/index.html');    

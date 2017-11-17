@@ -1,11 +1,16 @@
 'use strict'
 
 let myBut = document.querySelector('button')
+let userInput = document.querySelector('input')
 
 myBut.addEventListener('click', getContent)
 
+// function makeUrl() 
+
+
 function getContent() {
-    ajax('GET', '/search', displayContent)
+    let queryUrl = '/search?q=' + userInput.value
+    ajax('GET', queryUrl, displayContent)
 }
 
 function displayContent(list) {

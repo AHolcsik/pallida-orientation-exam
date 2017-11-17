@@ -1,9 +1,10 @@
 'use strict'
 
 
-function ajax(method, url, callback) {
+function ajax(method, queryUrl, callback) {
     let xhr = new XMLHttpRequest()
-    xhr.open(method, url)
+    // data = data ? data : null;
+    xhr.open(method, queryUrl)
     xhr.setRequestHeader('Content-Type', 'application/json')
     xhr.onreadystatechange = function() {
         if (xhr.readyState == 4) {
@@ -11,5 +12,9 @@ function ajax(method, url, callback) {
             callback(recievedData)
         }
     }
+    // let sendData = null
+    // if (data){
+    //     sendData = JSON.stringify(data)
+    // }
     xhr.send()
 }
