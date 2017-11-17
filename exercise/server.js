@@ -20,8 +20,8 @@ var connection = mysql.createConnection({
   });
 
 
-app.use(express.json())
-app.use('/', express.static('./assets'))
+app.use(express.json());
+app.use('/', express.static('./assets'));
 
 // app.get('/search', function(req, res) {
 //     // console.log(req.body)
@@ -35,14 +35,14 @@ app.use('/', express.static('./assets'))
 // })
 
 app.get('/search', function(req, res) {
-    console.log(req.params)
+    console.log(req.params);
     connection.query('SELECT * FROM licence_plates;', function(err, result) {
         if(err) {
             console.log(err.toString());
           }
           res.json(result);
-    })
-})
+    });
+});
 
 
 app.get('/', function(req, res) {
@@ -51,5 +51,5 @@ app.get('/', function(req, res) {
 
 app.listen(8080, function() {
     console.log('server is up on port 8080, good to go!')
-})
+});
 
