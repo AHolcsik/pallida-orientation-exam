@@ -21,16 +21,16 @@ var connection = mysql.createConnection({
 
 
 app.use(express.json())
-// app.use('/', express.static('./assets'))
+app.use('/', express.static('./assets'))
 
-// app.get('/playlists', function(req, res) {
-//     connection.query('SELECT * FROM playlists;', function(err, result) {
-//         if(err) {
-//             console.log(err.toString());
-//           }
-//           res.json(result);
-//     })
-// })
+app.get('/search', function(req, res) {
+    connection.query('SELECT * FROM licence_plates;', function(err, result) {
+        if(err) {
+            console.log(err.toString());
+          }
+          res.json(result);
+    })
+})
 
 app.get('/', function(req, res) {
     res.sendFile(__dirname + '/index.html');    
